@@ -104,14 +104,11 @@ public class FileOpener2 extends CordovaPlugin {
 				    contentType = _getMimeType(fileName);
 				}
 
-				Intent intent;
-				if (!contentType.equals("application/vnd.android.package-archive")) {
-					intent = new Intent(Intent.ACTION_VIEW);
-					Context context = cordova.getActivity().getApplicationContext();
-					Uri path = FileProvider.getUriForFile(context, cordova.getActivity().getPackageName() + ".fileOpener2.provider", file);
-					intent.setDataAndType(path, contentType);
-					intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-				}
+				Intent intent = new Intent(Intent.ACTION_VIEW);
+				Context context = cordova.getActivity().getApplicationContext();
+				Uri path = FileProvider.getUriForFile(context, cordova.getActivity().getPackageName() + ".fileOpener2.provider", file);
+				intent.setDataAndType(path, contentType);
+				intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
 
 				/*
 				 * @see
